@@ -1,0 +1,49 @@
+1.  Inicio
+2.  nombre        ,x(500)[{a-z},{A-Z},{BS}]
+3.  cedula        ,i[0-n]
+4.  adicional     ,d[0-n] <-- 0
+5.  horasMat      ,i[0-n]
+6.  horasNoc      ,i[0-n]
+7.  bandera       ,l <-- true
+8.  totalMat      ,d[0-n]
+9.  totalNoc      ,d[0-n]
+10. total         ,d[0-n]
+11. cuotaMat      ,d[0-n] <-- 10
+12. cuotaNoc      ,d[0-n] <-- 15
+13. mensaje       ,x(500)[{a-z},{A-Z},{BS},{$}] <-- ""
+14. opcion        ,x(10)[{a-z},{A-Z}]\
+15. contador      ,i[0-n] <-- 0
+
+16.  Mientras (bandera) entonce
+17.       << "Ingresa el nombre del empleado"
+18.       >> nombre
+19.      << "Ingresa la cédula del empleado"
+20.      >> cedula
+21.      << "Ingresa las horas trabajadas matutinas"
+22.      >> horasMat
+23.      << "Ingresa las horas trabajadas nocturnas"
+24.      >> horasNoc
+
+25.      totalMat <-- horasMat * cuotaMat
+
+26.      Si horasNoc >=10 entonces
+27.             adicional <-- (cuotaNoc * 10)/100
+28.      Fin Si
+29.      cuotaNoc <-- cuotaNoc + adicional
+30.      totalNoc <-- cuotaNoc * horasNoc
+31.      total <-- totalMat + totalNoc   
+
+32.      mensaje <-- mensaje + "Rol de trabajadore de nombre " +  nombre + " y cédula " + cedula + 
+         ".\n\t Horas matutina trabajadas: " + horasMat + 
+         ".\n\t Horas nocturnas trabajadas: " + horasNoc + 
+         ".\n\t Total a cancelar: $" + total +"\n"
+33.      contador <-- contador + 1
+
+34.      << "Desea parar de ingresar empleados, si desea parar, ingrese "s"  
+35.      >> opcion
+36.      Si opcion == "s"
+37.             bandera <-- false
+38.      Fin Si
+39. Fin Mientras
+40. << "Nomina de trabajadores\n" + mensaje + "Número de empleados" + contador
+41. Fin
